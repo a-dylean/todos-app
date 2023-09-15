@@ -3,9 +3,14 @@ import {
   Button,
   ButtonGroup,
   Container,
+  FormControl,
   IconButton,
+  Input,
+  InputAdornment,
   List,
   ListItem,
+  ListItemButton,
+  ListItemText,
   Paper,
   TextField,
   Typography,
@@ -16,6 +21,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Task, Inputs } from "./interfaces";
+import AddIcon from "@mui/icons-material/Add";
 
 const App = () => {
   const [allTasks, setTasks] = useState<Task[]>([]);
@@ -81,15 +87,10 @@ const App = () => {
   return (
     <Container>
       <Paper sx={{ m: "0 auto", width: "50%" }}>
-        <Typography component="h1" variant="h5">
-          Todos
-        </Typography>
+        <Typography variant="h5">Todos</Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              size="small"
+          <FormControl sx={{ display: "flex", alignItems: "center" }}>
+            <Input
               required
               id="task"
               autoFocus
@@ -98,25 +99,34 @@ const App = () => {
               onChange={(e) => setNewTask(e.target.value)}
               onKeyDown={handleEnterPress}
               value={newTask}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton aria-label="add task" type="submit">
+                    <AddIcon />
+                  </IconButton>
+                </InputAdornment>
+              }
             />
-            <Button type="submit">Add</Button>
-          </Box>
+          </FormControl>
         </form>
 
         <List>
           {selectedArr(mode).map((task, idx) => (
-            <ListItem key={idx} divider>
-              <IconButton onClick={() => toogleDoneTask(idx)}>
-                {task.active ? (
-                  <RadioButtonUncheckedIcon />
-                ) : (
-                  <CheckCircleIcon />
-                )}
-              </IconButton>
-              <Typography>{task.name}</Typography>
-              <IconButton onClick={() => removeTasks(idx)}>
-                <DeleteForeverIcon />
-              </IconButton>
+            <ListItem key={idx} divider secondaryAction={
+              <IconButton onClick={() => removeTasks(idx)} edge="end" aria-label="delete task">
+                  <DeleteForeverIcon />
+                </IconButton>
+            }
+            >
+                <IconButton onClick={() => toogleDoneTask(idx)}>
+                  {task.active ? (
+                    <RadioButtonUncheckedIcon />
+                  ) : (
+                    <CheckCircleIcon />
+                  )}
+                </IconButton>
+                <ListItemText>{task.name}</ListItemText>
+                
             </ListItem>
           ))}
         </List>
