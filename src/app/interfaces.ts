@@ -1,6 +1,6 @@
 export interface Task {
   name: string;
-  done: boolean;
+  active: boolean;
 }
 
 export type Inputs = {
