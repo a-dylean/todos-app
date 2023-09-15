@@ -27,9 +27,11 @@ export const InputForm = ({ allTasks, setTasks }: InputFormProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl sx={{ display: "flex", alignItems: "center" }}>
         <Input
+          sx={{ pl: 3 }}
           required
           id="task"
           autoFocus
+          fullWidth
           placeholder="What needs to be done?"
           {...register("task")}
           onChange={(e) => setNewTask(e.target.value)}

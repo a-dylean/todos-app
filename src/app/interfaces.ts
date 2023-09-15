@@ -24,4 +24,5 @@ export interface BottomMenuProps {
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   allTasks: Task[];
   activeTasks: Task[];
+  filter: string;
 }
