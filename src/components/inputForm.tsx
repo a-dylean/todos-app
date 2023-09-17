@@ -18,7 +18,8 @@ export const InputForm = ({ allTasks, setTasks }: InputFormProps) => {
   };
   const addTask = (name: string): void => {
     if (name.trim().length === 0) {
-      alert("Input can not be empty");
+      newTask = "";
+      return;
     }
     const newTasks = [...allTasks, { name, active: true }];
     setTasks(newTasks);
