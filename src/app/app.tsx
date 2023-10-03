@@ -8,11 +8,10 @@ import { BottomMenu } from "../components/bottomMenu";
 const App = () => {
   const [allTasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<string>("all");
-  let activeTasks: Task[] = allTasks.filter((obj) => obj.active === true);
-  let [mode, setMode] = useState<string>("all");
+  const activeTasks: Task[] = allTasks.filter((obj) => obj.active === true);
 
   useEffect(() => {
-    setMode(filter);
+    setFilter(filter);
   }, [filter]);
 
   return (
@@ -31,7 +30,7 @@ const App = () => {
         <TasksList
           allTasks={allTasks}
           activeTasks={activeTasks}
-          mode={mode}
+          filter={filter}
           setTasks={setTasks}
         />
         <BottomMenu

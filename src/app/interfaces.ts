@@ -15,7 +15,7 @@ export interface InputFormProps {
 export interface TasksListProps {
   allTasks: Task[];
   activeTasks: Task[];
-  mode: string;
+  filter: string;
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 

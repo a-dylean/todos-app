@@ -7,12 +7,12 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 export const TasksList = ({
   allTasks,
   activeTasks,
-  mode,
+  filter,
   setTasks,
 }: TasksListProps) => {
-  let completedTasks: Task[] = allTasks.filter((obj) => obj.active === false);
-  const selectedArr = (mode: string) => {
-    switch (mode) {
+  const completedTasks: Task[] = allTasks.filter((obj) => obj.active === false);
+  const selectedArr = (filter: string) => {
+    switch (filter) {
       case "all":
         return allTasks;
       case "active":
@@ -37,7 +37,7 @@ export const TasksList = ({
   };
   return (
     <List>
-      {selectedArr(mode).map((task, idx) => (
+      {selectedArr(filter).map((task, idx) => (
         <ListItem
           key={idx}
           divider
